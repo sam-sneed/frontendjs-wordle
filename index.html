@@ -8,9 +8,6 @@ initHead("FrontendJS Wordle");
 // Initialize the body section
 initBody();
 
-// Create the heading element
-const h1 = createParagraph("heading", "FrontendJS Wordle");
-
 // Create the div for displaying the word
 const wordDiv = createDiv("word");
 
@@ -24,7 +21,7 @@ const button = createButton("guessButton", "Guess", { onclick: "checkGuess()" })
 const resultDiv = createDiv("result");
 
 // Append elements to the document body
-writeToBody(h1.outerHTML);
+writeToBody("<h1>Frontend.JS Wordle</h1>");
 writeToBody(wordDiv.outerHTML);
 writeToBody(input.outerHTML);
 writeToBody(button.outerHTML);
