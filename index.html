@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="frontend.js"></script>
+<script>
+    // List of 5-letter words for the game
+    const words = ["apple", "grape", "lemon", "melon", "peach"];
+
+    // Randomly select a word from the list
+    let targetWord = words[Math.floor(Math.random() * words.length)];
+
+    // Initialize the number of attempts
+    let attempts = 0;
+
+    // Initialize body using Frontend.JS framework
+    initBody();
+
+    // Create elements for the game
+    const h1 = createElement("h1");
+    h1.innerText = "Frontend.JS Wordle";
+    document.body.appendChild(h1);
+
+    const wordDiv = createElement("div");
+    wordDiv.id = "word";
+    document.body.appendChild(wordDiv);
+
+    const input = createElement("input");
+    setAttributes(input, { 
+        type: "text", 
+        id: "guessInput", 
+        maxlength: "5" 
+    });
+    document.body.appendChild(input);
+
+    const button = createElement("button");
+    button.innerText = "Guess";
+    button.onclick = checkGuess;
+    document.body.appendChild(button);
+
+    const resultDiv = createElement("div");
+    resultDiv.id = "result";
+    document.body.appendChild(resultDiv);
+
+    // Apply CSS styles
+    applyCSS("word", "font-size", "2rem");
+    applyCSS("word", "margin-bottom", "20px");
+    applyCSS("input[type='text']", "padding", "8px");
+    applyCSS("input[type='text']", "margin-right", "10px");
+    applyCSS("input[type='text']", "width", "100px");
+    applyCSS("input[type='text']", "text-align", "center");
+    applyCSS("button", "padding", "8px 16px");
+    applyCSS("button", "background-color", "#007bff");
+    applyCSS("button", "color", "#fff");
+    applyCSS("button", "border", "none");
+    applyCSS("button", "cursor", "pointer");
+    applyCSS("#result", "margin-top", "20px");
+    applyCSS("#result", "font-weight", "bold");
+
+    // Function to check the player's guess
+    function checkGuess() {
+        const guess = document.getElementById("guessInput").value.toLowerCase();
+        if (guess.length !== 5) {
+            alert("Please enter a 5-letter word.");
+            return;
+        }
+        attempts++;
+        if (guess === targetWord) {
+            resultDiv.innerText = `Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.`;
+            createTryAgainButton();
+        } else {
+            const feedback = Array.from(guess).map((letter, index) => {
+                if (targetWord.includes(letter)) {
+                    return targetWord[index] === letter ? "O" : "X";
+                } else {
+                    return "-";
+                }
+            }).join("");
+            resultDiv.innerText = `Incorrect guess. Feedback: ${feedback}`;
+            if (attempts >= 6) {
+                resultDiv.innerText = `Sorry, you've reached the maximum number of attempts. The word was "${targetWord}".`;
+                createTryAgainButton();
+            }
+        }
+    }
+
+    // Function to create "Try Again" button
+    function createTryAgainButton() {
+        const tryAgainButton = createElement("button");
+        tryAgainButton.innerText = "Try Again";
+        tryAgainButton.onclick = () => window.location.reload();
+        document.body.appendChild(tryAgainButton);
+    }
+</script>
+</html>
