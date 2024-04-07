@@ -43,21 +43,6 @@
     resultDiv.id = "result";
     document.body.appendChild(resultDiv);
 
-    // Apply CSS styles
-    applyCSS("word", "font-size", "2rem");
-    applyCSS("word", "margin-bottom", "20px");
-    applyCSS("input[type='text']", "padding", "8px");
-    applyCSS("input[type='text']", "margin-right", "10px");
-    applyCSS("input[type='text']", "width", "100px");
-    applyCSS("input[type='text']", "text-align", "center");
-    applyCSS("button", "padding", "8px 16px");
-    applyCSS("button", "background-color", "#007bff");
-    applyCSS("button", "color", "#fff");
-    applyCSS("button", "border", "none");
-    applyCSS("button", "cursor", "pointer");
-    applyCSS("#result", "margin-top", "20px");
-    applyCSS("#result", "font-weight", "bold");
-
     // Function to check the player's guess
     function checkGuess() {
         const guess = document.getElementById("guessInput").value.toLowerCase();
