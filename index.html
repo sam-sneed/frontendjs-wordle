@@ -79,28 +79,30 @@
     let wonGame = false 
     // Function to check the player's guess
     function checkGuess() {
-        const guess = document.getElementById("guessInput").value.toLowerCase();
-        if (guess.length !== 5) {
-            alert("Please enter a 5-letter word.");
-            return;
-        }
-        attempts++;
-        if (guess === targetWord && wonGame == false) {
-            resultDiv.innerText = `Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.`;
-            createTryAgainButton();
-            wonGame = true
-        } else {
-            const feedback = Array.from(guess).map((letter, index) => {
-                if (targetWord.includes(letter)) {
-                    return targetWord[index] === letter ? "O" : "X";
-                } else {
-                    return "-";
-                }
-            }).join("");
-            resultDiv.innerText = `Incorrect guess. Feedback: ${feedback}`;
-            if (attempts >= 6) {
-                resultDiv.innerText = `Sorry, you've reached the maximum number of attempts. The word was "${targetWord}".`;
+        if (wonGame == false) {
+            const guess = document.getElementById("guessInput").value.toLowerCase();
+            if (guess.length !== 5) {
+                alert("Please enter a 5-letter word.");
+                return;
+            }
+            attempts++;
+            if (guess === targetWord) {
+                resultDiv.innerText = `Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.`;
                 createTryAgainButton();
+                wonGame = true
+            } else {
+                const feedback = Array.from(guess).map((letter, index) => {
+                    if (targetWord.includes(letter)) {
+                        return targetWord[index] === letter ? "O" : "X";
+                    } else {
+                        return "-";
+                    }
+                }).join("");
+                resultDiv.innerText = `Incorrect guess. Feedback: ${feedback}`;
+                if (attempts >= 6) {
+                    resultDiv.innerText = `Sorry, you've reached the maximum number of attempts. The word was "${targetWord}".`;
+                    createTryAgainButton();
+                }
             }
         }
     }
