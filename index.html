@@ -75,7 +75,8 @@
     const resultDiv = createElement("div");
     resultDiv.id = "result";
     document.body.appendChild(resultDiv);
-
+    
+    let wonGame = false 
     // Function to check the player's guess
     function checkGuess() {
         const guess = document.getElementById("guessInput").value.toLowerCase();
@@ -84,9 +85,10 @@
             return;
         }
         attempts++;
-        if (guess === targetWord) {
+        if (guess === targetWord && wonGame == false) {
             resultDiv.innerText = `Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.`;
             createTryAgainButton();
+            wonGame = true
         } else {
             const feedback = Array.from(guess).map((letter, index) => {
                 if (targetWord.includes(letter)) {
