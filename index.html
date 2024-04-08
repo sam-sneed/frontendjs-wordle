@@ -109,14 +109,13 @@ function checkGuess() {
 // Apply CSS to make the page responsive
 applyCSS("body", "font-family", "Arial, sans-serif");
 applyCSS("body", "text-align", "center");
-applyCSS("h1", "color", "#333");
-applyCSS(".word", "margin", "20px auto");
-applyCSS(".word", "font-size", "24px");
-applyCSS(".guessInput, .guessButton", "margin", "10px");
-applyCSS(".guessInput, .guessButton", "padding", "8px");
-applyCSS(".guessInput, .guessButton", "font-size", "16px");
-applyCSS(".result", "margin", "20px auto");
-applyCSS(".result", "font-size", "18px");
+applyCSS("word", "margin", "20px auto");
+applyCSS("word", "font-size", "2.5vw");
+applyCSS("guessInput, .guessButton", "margin", "1.5vw");
+applyCSS("guessInput, .guessButton", "padding", "1.3vw");
+applyCSS("guessInput, .guessButton", "font-size", "2vw");
+applyCSS("result", "margin", "2vw auto");
+applyCSS("result", "font-size", "1.8vw");
 
 // Media query for smaller screens
 applyCSS("@media screen and (max-width: 600px)", "body", "font-size", "3vw");
