@@ -8,7 +8,7 @@ initHead("FrontendJS Wordle");
 // Initialize the body section
 initBody();
 
-//Create the header
+// Create the header
 writeToBody("<h1>Frontend.JS Wordle</h1>");
 
 // Create the div for displaying the word
@@ -22,6 +22,12 @@ const button = createButton("guessButton", "Guess", { onclick: "checkGuess()" })
 
 // Create the div for displaying the result
 const resultDiv = createDiv("result");
+
+// Append elements to the document body
+writeToBody(wordDiv.outerHTML);
+writeToBody(input.outerHTML);
+writeToBody(button.outerHTML);
+writeToBody(resultDiv.outerHTML);
 
 // List of 5-letter words for the game
 const words = [
@@ -63,13 +69,7 @@ const words = [
     "alarm", "beach", "charm", "dream", "early", "flora", "grape", "honor",
     "icing", "jelly", "koala", "lucky", "magic", "novel", "olive", "pilot",
     "quiet", "raven", "salsa", "tiger", "umbra", "virus", "waltz", "xerox",
-    "yield", "zebra", "apple", "baker", "candy", "dizzy", "eagle", "fancy",
-    "giant", "happy", "jazzy", "kitty", "lemon", "mango", "novel", "ocean",
-    "piano", "queen", "rainy", "sunny", "tulip", "unity", "vivid", "water",
-    "xenon", "youth", "zebra", "alarm", "beach", "charm", "dream", "early",
-    "flora", "grape", "honor", "icing", "jelly", "koala", "lucky", "magic",
-    "novel", "olive", "pilot", "quiet", "raven", "salsa", "tiger", "umbra",
-    "virus", "waltz", "xerox", "yield", "zebra"
+    "yield", "zebra"
 ];
 
 // Randomly select a word from the list
@@ -91,7 +91,7 @@ function checkGuess() {
         }
         attempts++;
         if (guess === targetWord) {
-            writeHTML("result", `Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.`);
+            writeToBody(`<p>Congratulations! You guessed the word "${targetWord}" in ${attempts} attempts.</p>`);
             createButton("tryAgainButton", "Try Again", { onclick: "window.location.reload()" });
             gameOver = true;
         } else {
@@ -102,15 +102,30 @@ function checkGuess() {
                     return "-";
                 }
             }).join("");
-            writeHTML("result", `Incorrect guess. Feedback: ${feedback}`);
+            writeToBody(`<p>Incorrect guess. Feedback: ${feedback}</p>`);
             if (attempts >= 6) {
-                writeHTML("result", `Sorry, you've reached the maximum number of attempts. The word was "${targetWord}".`);
+                writeToBody(`<p>Sorry, you've reached the maximum number of attempts. The word was "${targetWord}".</p>`);
                 createButton("tryAgainButton", "Try Again", { onclick: "window.location.reload()" });
                 gameOver = true;
             }
         }
     }
 }
+
+// Apply CSS to make the page responsive
+applyCSS("body", "font-family", "Arial, sans-serif");
+applyCSS("body", "text-align", "center");
+applyCSS("h1", "color", "#333");
+applyCSS(".word", "margin", "20px auto");
+applyCSS(".word", "font-size", "24px");
+applyCSS(".guessInput, .guessButton", "margin", "10px");
+applyCSS(".guessInput, .guessButton", "padding", "8px");
+applyCSS(".guessInput, .guessButton", "font-size", "16px");
+applyCSS(".result", "margin", "20px auto");
+applyCSS(".result", "font-size", "18px");
+
+// Media query for smaller screens
+applyCSS("@media screen and (max-width: 600px)", "body", "font-size", "3vw");
 
 </script>
 </html>
