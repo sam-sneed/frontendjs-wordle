@@ -23,12 +23,6 @@ const button = createButton("guessButton", "Guess", { onclick: "checkGuess()" })
 // Create the div for displaying the result
 const resultDiv = createDiv("result");
 
-// Append elements to the document body
-writeToBody(wordDiv.outerHTML);
-writeToBody(input.outerHTML);
-writeToBody(button.outerHTML);
-writeToBody(resultDiv.outerHTML);
-
 // List of 5-letter words for the game
 const words = [
     "apple", "baker", "candy", "dizzy", "eagle", "fancy", "giant", "happy",
